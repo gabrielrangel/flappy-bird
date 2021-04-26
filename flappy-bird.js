@@ -1,5 +1,3 @@
-import Settings from './src/settings.js'
+import GameImpl from './src/game-implementation.js';
 
-const settings = new Settings()
-
-console.log(settings.test)
+new GameImpl()
