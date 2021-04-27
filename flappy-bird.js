@@ -1,3 +1,9 @@
-import GameImpl from './src/game-implementation.js';
+import GameImpl from "./src/game-implementation.js";
 
-new GameImpl()
+const stylesheet = document.createElement("link");
+stylesheet.setAttribute("rel", "stylesheet");
+stylesheet.setAttribute("href", "./assets/css/flappy-bird.css");
+
+document.querySelector("head").appendChild(stylesheet);
+
+new GameImpl();
