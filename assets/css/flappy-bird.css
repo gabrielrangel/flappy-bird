@@ -12,6 +12,7 @@ div.flappy-game-score {
   grid-row-end: 2;
   grid-column-start: 1;
   grid-column-end: 2;
+  z-index: 1;
 
   width: 100%;
   height: 100%;
@@ -22,19 +23,36 @@ div.flappy-game-controllers {
   grid-row-end: 2;
   grid-column-start: 2;
   grid-column-end: 3;
+  z-index: 1;
+
+  display: flex;
+  justify-content: flex-end;
 
   width: 100%;
   height: 100%;
 }
 
+div.game-area *,
+div.flappy-game-controllers *,
+div.flappy-game-score {
+  margin: 0;
+}
+
 div.flappy-game-area {
+  position: absolute;
   grid-row-start: 1;
   grid-row-end: 3;
   grid-column-start: 1;
   grid-column-end: 3;
 
-  width: 100%;
-  height: 100%;
+  /* width: 100%;
+  height: 100%; */
+  width: inherit;
+  height: inherit;
+}
+
+div.flappy-game-area > * {
+  position: absolute;
 }
 
 div.flappy-game-obstacle {
@@ -42,17 +60,23 @@ div.flappy-game-obstacle {
   flex-direction: column;
   justify-content: space-between;
   box-sizing: border-box;
+  z-index: 0;
 
-  height: 100%;
+  height: inherit;
   width: 100px;
 }
 
-div.flappy-game-obstacle :nth-child(2) {
+div.flappy-game-obstacle > div {
+  /* margin: 0; */
+  width: inherit;
+}
+
+div.flappy-game-obstacle > div:nth-child(1) {
   display: flex;
   flex-direction: column;
 }
 
-div.flappy-game-obstacle :nth-child(1) {
+div.flappy-game-obstacle > div:nth-child(2) {
   display: flex;
   flex-direction: column-reverse;
 }
@@ -93,14 +117,27 @@ div.flappy-game-obstacle div div {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#9be359",endColorstr="#547e21",GradientType=1);
 }
 
-div.flappy-game-obstacle div:nth-child(1) {
-  box-sizing: border-box;
-  height: 20px;
-  width: 100%;
-}
-
-div.flappy-game-obstacle div:nth-child(2) {
+div.flappy-game-obstacle > div > div:nth-child(1) {
   box-sizing: border-box;
   height: 100%;
   width: 90%;
+}
+
+div.flappy-game-obstacle > div > div:nth-child(2) {
+  box-sizing: border-box;
+  height: 20px;
+  width: inherit;
+}
+
+
+
+/* div.flappy-game-obstacle div :nth-child(1) {
+}
+
+div.flappy-game-obstacle div :nth-child(2) {
+} */
+
+img.flappy-game-bird {
+  z-index: 1;
+  width: 60px;
 }

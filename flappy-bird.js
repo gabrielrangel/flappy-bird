@@ -6,4 +6,4 @@ stylesheet.setAttribute("href", "./assets/css/flappy-bird.css");
 
 document.querySelector("head").appendChild(stylesheet);
 
-new GameImpl();
+new GameImpl()

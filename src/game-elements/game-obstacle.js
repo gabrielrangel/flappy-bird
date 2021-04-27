@@ -8,7 +8,7 @@ function tubeGenerator(parentElement) {
 }
 
 export default class GameObstacle {
-  constructor(parentElement, className, gapSize, minHeight) {
+  constructor(parentElement, {className, gapSize, minHeight}) {
     this.container = new Div(parentElement, className);
 
     this.upperTube = tubeGenerator(this.container.element);
@@ -18,7 +18,5 @@ export default class GameObstacle {
 
     this.bottomTube = tubeGenerator(this.container.element);
     this.bottomTube.height = 100 - gapSize - this.upperTube.height;
-
-    console.log(this.bottomTube.height);
   }
 }

@@ -1,5 +1,5 @@
 export default class GameContainer {
-  constructor(id, className) {
+  constructor(id, {className}) {
     this.element = document.querySelector(`#${id}`)
     this.element.setAttribute('class', className)
   }
