@@ -1,9 +1,10 @@
 import GameImpl from "./src/game-implementation.js";
 
-const stylesheet = document.createElement("link");
-stylesheet.setAttribute("rel", "stylesheet");
-stylesheet.setAttribute("href", "./assets/css/flappy-bird.css");
-
-document.querySelector("head").appendChild(stylesheet);
-
-new GameImpl()
+export default (function flappyBird(containerId = "flappy-bird") {
+  fetch("./settings.json")
+    .then((response) => response.json())
+    .then((settings) => {
+      GameImpl(settings, containerId);
+    })
+    .catch((err) => console.error(err));
+})()

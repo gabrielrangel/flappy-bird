@@ -1,0 +1,73 @@
+{
+  "stylesheet": {
+    "query": "head",
+    "tag": "style",
+    "children": [
+      {
+        "tag": "link",
+        "rel": "stylesheet",
+        "href": "./assets/css/flappy-bird.css"
+      }
+    ]
+  },
+
+  "gameContainer": {
+    "class": "flappy-game-container",
+    "style": { "height": 480, "width": 720 }
+  },
+
+  "gameScore": {
+    "tag": "div",
+    "class": "flappy-game-score"
+  },
+
+  "gameControllers": {
+    "tag": "div",
+    "class": "flappy-game-controllers",
+    "children": [
+      {
+        "tag": "img",
+        "id": "flappy-play-pause",
+        "src": "../assets/img/play_circle_filled_black_48dp.svg"
+      }
+    ]
+  },
+
+  "gameArea": {
+    "tag": "div",
+    "class": "flappy-game-area",
+    "children": []
+  },
+
+  "gameBird": {
+    "movements": true,
+    "tag": "img",
+    "id": "glappy-game-bird",
+    "src": "../assets/img/bird.png",
+    "style": { "height": 50 }
+  },
+  
+  "gameObstacle": {
+    "gapHeight": 100,
+    "speed": 0.01,
+    "movements": true,
+    "tag": "div",
+    "id": "gameObstacle",
+    "class": "flappy-game-obstacle",
+    "style": { "width": 100 },
+    "children": [
+      {
+        "id": "upperTube",
+        "tag": "div",
+        "style": { "width": 100 },
+        "children": [{ "tag": "div" }, { "tag": "div" }]
+      },
+      {
+        "id": "bottomTube",
+        "tag": "div",
+        "style": { "width": 100 },
+        "children": [{ "tag": "div" }, { "tag": "div" }]
+      }
+    ]
+  }
+}

@@ -1,36 +1,29 @@
-import Settings from "./settings.js";
-import GameContainer from "./game-elements/game-container.js";
-import GameScore from "./game-elements/game-score.js";
-import GameControllers from "./game-elements/game-controllers.js";
-import GameArea from "./game-elements/game-area.js";
-import GameBird from "./game-elements/game-bird.js";
-import GameObstacle from "./game-elements/game-obstacle.js";
+import Element from "./lib/element.js";
+import Movements from "./lib/movements.js";
+import GameLoop from "./game-loop.js";
+import Obstacle from'./game-obstacle.js'
 
-export default class GameImpl {
-  constructor(id = "flappy-bird") {
-    this.settings = new Settings();
+export default function GameImpl(settings, containerId) {
+  new Element(settings.stylesheet);
 
-    this.container = new GameContainer(id, this.settings.gameContainer);
+  const game = {};
 
-    this.score = new GameScore(this.container.element, this.settings.gameScore);
+  game.container = new Element({
+    query: `#${containerId}`,
+    ...settings.gameContainer,
+  });
+  game.score = new Element(settings.gameScore);
+  game.controllers = new Element(settings.gameControllers);
+  settings.gameArea.style = settings.gameContainer.style;
+  game.area = new Element(settings.gameArea);
 
-    this.controllers = new GameControllers(
-      this.container.element,
-      this.settings.gameControllers
-    );
+  Object.entries(game).forEach(([key, value]) => {
+    if (key !== "container") {
+      game.container.append(value);
+    }
+  });
 
-    this.area = new GameArea(this.container.element, this.settings.gameArea);
+  game.obstacles = Obstacle(game.area, settings.gameObstacle)
 
-    this.bird = new GameBird(this.area.element, this.settings.gameBird);
-
-    this.obstacles = new Array();
-
-    this.createObstacle();
-  }
-
-  createObstacle() {
-    this.obstacles.push(
-      new GameObstacle(this.area.element, this.settings.gameObstacle)
-    );
-  }
+  GameLoop(game);
 }
