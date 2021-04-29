@@ -6,9 +6,16 @@ export default function Bird(gameArea, { ratio, speed, ...settings }) {
   const bird = new AnimatedElement(gameArea, settings);
   gameArea.append(bird);
   return {
-    mover: () => {
+    mover: (keyIsPressed) => {
       if (bird.left < gameArea.width/4) {
         bird.move.right(speed)
+      }
+      if (bird.left > 0){ 
+        if (keyIsPressed){
+          bird.move.up(2*speed)
+        } else {
+          bird.move.down(speed)
+        }
       }
     },
     ...bird,

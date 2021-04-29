@@ -26,14 +26,26 @@ export default function GameImpl(settings, containerId) {
   game.bird = Bird(game.area, settings.gameBird);
 
   game.isRunning = true;
-  game.isOver = false;
   window.addEventListener("blur", () => {
     game.isRunning = false;
   });
+
+  game.isOver = false;
   window.addEventListener("focus", () => {
     if (!game.isOver) {
       game.isRunning = true;
     }
+  });
+
+  game.keyIsPressed = false;
+  window.addEventListener("keydown", () => {
+    game.keyIsPressed = true;
+    console.log(game.keyIsPressed)
+  });
+  
+  window.addEventListener("keyup", () => {
+    game.keyIsPressed = false;
+    console.log(game.keyIsPressed)
   });
 
   GameLoop(game);
