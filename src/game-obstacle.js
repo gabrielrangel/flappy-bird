@@ -1,8 +1,7 @@
-import Element from "./lib/element.js";
-import Movements from "./lib/movements.js";
+import AnimatedElement from './lib/animated-element.js'
 
 export default function Obstacle(gameArea, { gapHeight, speed, ...settings }) {
-  class Obstacle extends Element {
+  class Obstacle extends AnimatedElement {
     constructor(gameArea, settings) {
       if (!settings.element) {
         const minPerc = gapHeight / gameArea.height;
@@ -14,10 +13,7 @@ export default function Obstacle(gameArea, { gapHeight, speed, ...settings }) {
         settings.children[1].style.height =
           (maxPerc - random) * gameArea.height;
       }
-      super(settings);
-      this.move = Movements(gameArea, this, {
-        left: this.left ? this.left : gameArea.width,
-      });
+      super(gameArea, settings)
     }
   }
 
