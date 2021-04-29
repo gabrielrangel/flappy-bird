@@ -1,11 +1,10 @@
 import Element from "./lib/element.js";
 import GameLoop from "./game-loop.js";
-import Bird from "./game-bird.js"
-import Obstacle from'./game-obstacle.js'
+import Bird from "./game-bird.js";
+import Obstacle from "./game-obstacle.js";
 
 export default function GameImpl(settings, containerId) {
   new Element(settings.stylesheet);
-
   const game = {};
 
   game.container = new Element({
@@ -23,8 +22,19 @@ export default function GameImpl(settings, containerId) {
     }
   });
 
-  game.obstacles = Obstacle(game.area, settings.gameObstacle)
-  game.bird = Bird(game.area, settings.gameBird)
+  game.obstacles = Obstacle(game.area, settings.gameObstacle);
+  game.bird = Bird(game.area, settings.gameBird);
+
+  game.isRunning = true;
+  game.isOver = false;
+  window.addEventListener("blur", () => {
+    game.isRunning = false;
+  });
+  window.addEventListener("focus", () => {
+    if (!game.isOver) {
+      game.isRunning = true;
+    }
+  });
 
   GameLoop(game);
 }
