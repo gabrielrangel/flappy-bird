@@ -4,7 +4,8 @@ export default class StyleShortcuts {
   }
 
   get height() {
-    return Number(this.element.style.height.replace("px", "").trim());
+    const height = this.element.style.height.replace("px", "").trim()
+    return height == "" ? undefined : Number(height)
   }
 
   set width(value) {
@@ -12,7 +13,8 @@ export default class StyleShortcuts {
   }
 
   get width() {
-    return Number(this.element.style.width.replace("px", "").trim());
+    const width = this.element.style.width.replace("px", "").trim()
+    return width == "" ? undefined : Number(width)
   }
 
   set top(value) {
@@ -20,7 +22,8 @@ export default class StyleShortcuts {
   }
 
   get top() {
-    return Number(this.element.style.top.replace("px", "").trim());
+    const top = this.element.style.top.replace("px", "").trim()
+    return top == "" ? undefined : Number(top)
   }
 
   set left(value) {
@@ -28,6 +31,7 @@ export default class StyleShortcuts {
   }
 
   get left() {
-    return Number(this.element.style.left.replace("px", "").trim());
+    const left = this.element.style.left.replace("px", "").trim()
+    return left == "" ? undefined : Number(left)
   }
 }

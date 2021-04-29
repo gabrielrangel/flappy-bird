@@ -1,6 +1,6 @@
 import Element from "./lib/element.js";
-import Movements from "./lib/movements.js";
 import GameLoop from "./game-loop.js";
+import Bird from "./game-bird.js"
 import Obstacle from'./game-obstacle.js'
 
 export default function GameImpl(settings, containerId) {
@@ -24,6 +24,7 @@ export default function GameImpl(settings, containerId) {
   });
 
   game.obstacles = Obstacle(game.area, settings.gameObstacle)
+  game.bird = Bird(game.area, settings.gameBird)
 
   GameLoop(game);
 }

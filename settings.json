@@ -13,7 +13,7 @@
 
   "gameContainer": {
     "class": "flappy-game-container",
-    "style": { "height": 480, "width": 720 }
+    "style": { "height": 720, "width": 480 }
   },
 
   "gameScore": {
@@ -40,9 +40,10 @@
   },
 
   "gameBird": {
-    "movements": true,
+    "speed": 0.01,
+    "ratio": "1.4",
     "tag": "img",
-    "id": "glappy-game-bird",
+    "id": "flappy-game-bird",
     "src": "../assets/img/bird.png",
     "style": { "height": 50 }
   },
@@ -50,7 +51,6 @@
   "gameObstacle": {
     "gapHeight": 100,
     "speed": 0.01,
-    "movements": true,
     "tag": "div",
     "id": "gameObstacle",
     "class": "flappy-game-obstacle",

@@ -13,6 +13,7 @@ export default function Obstacle(gameArea, { gapHeight, speed, ...settings }) {
         settings.children[1].style.height =
           (maxPerc - random) * gameArea.height;
       }
+      settings.initialLeft = gameArea.width
       super(gameArea, settings)
     }
   }
