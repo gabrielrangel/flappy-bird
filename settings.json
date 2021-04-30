@@ -27,7 +27,7 @@
     "children": [
       {
         "tag": "img",
-        "id": "flappy-play-pause",
+        "id": "flappy-play-pause", 
         "src": "../assets/img/play_circle_filled_black_48dp.svg"
       }
     ]
@@ -52,7 +52,7 @@
     "gapHeight": 100,
     "speed": 0.01,
     "tag": "div",
-    "id": "gameObstacle",
+    "id": "flappy-game-obstacle",
     "class": "flappy-game-obstacle",
     "style": { "width": 100 },
     "children": [

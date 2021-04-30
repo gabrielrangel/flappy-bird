@@ -8,13 +8,11 @@ export default function Movements(parent, element, { top = 0, left = 0 }) {
   return {
     up: (speed) => {
       const top = element.top - speed * height;
-      console.log(top);
       element.top = top > minTop ? top : minTop;
     },
 
     down: (speed) => {
       const top = element.top + speed * height;
-      console.log(top);
       element.top = top < maxTop ? top : maxTop;
     },
 

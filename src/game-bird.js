@@ -7,16 +7,17 @@ export default function Bird(gameArea, { ratio, speed, ...settings }) {
   gameArea.append(bird);
   return {
     mover: (keyIsPressed) => {
-      if (bird.left < gameArea.width/4) {
-        bird.move.right(speed)
+      if (bird.left < gameArea.width / 4) {
+        bird.move.right(speed);
       }
-      if (bird.left > 0){ 
-        if (keyIsPressed){
-          bird.move.up(2*speed)
+      if (bird.left > 0) {
+        if (keyIsPressed) {
+          bird.move.up(2 * speed);
         } else {
-          bird.move.down(speed)
+          bird.move.down(speed);
         }
       }
+      return { top: bird.top, left: bird.left };
     },
     ...bird,
   };

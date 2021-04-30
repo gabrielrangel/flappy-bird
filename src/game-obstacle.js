@@ -1,4 +1,4 @@
-import AnimatedElement from './lib/animated-element.js'
+import AnimatedElement from "./lib/animated-element.js";
 
 export default function Obstacle(gameArea, { gapHeight, speed, ...settings }) {
   class Obstacle extends AnimatedElement {
@@ -13,8 +13,8 @@ export default function Obstacle(gameArea, { gapHeight, speed, ...settings }) {
         settings.children[1].style.height =
           (maxPerc - random) * gameArea.height;
       }
-      settings.initialLeft = gameArea.width
-      super(gameArea, settings)
+      settings.initialLeft = gameArea.width;
+      super(gameArea, settings);
     }
   }
 
@@ -24,13 +24,15 @@ export default function Obstacle(gameArea, { gapHeight, speed, ...settings }) {
     },
 
     mover: () => {
-      document.querySelectorAll(`#${settings.id}`).forEach((element) => {
+      const nodeList = document.querySelectorAll(`#${settings.id}`);
+      return Array.from(nodeList).map((element) => {
         const obstacle = new Obstacle(gameArea, { element });
         if (obstacle.left > -obstacle.width) {
           obstacle.move.left(speed);
         } else {
           obstacle.remove();
         }
+        return { left: obstacle.left, top: obstacle.top };
       });
     },
   };
