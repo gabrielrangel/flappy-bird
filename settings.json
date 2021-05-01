@@ -49,7 +49,7 @@
   },
   
   "gameObstacle": {
-    "gapHeight": 100,
+    "gapHeight": 0.2,
     "speed": 0.01,
     "tag": "div",
     "id": "flappy-game-obstacle",

@@ -1,10 +1,11 @@
 import AnimatedElement from "./lib/animated-element.js";
+import Element from "./lib/element.js";
 
 export default function Obstacle(gameArea, { gapHeight, speed, ...settings }) {
   class Obstacle extends AnimatedElement {
     constructor(gameArea, settings) {
       if (!settings.element) {
-        const minPerc = gapHeight / gameArea.height;
+        const minPerc = (gapHeight * gameArea.height) / gameArea.height;
         const maxPerc = 1 - minPerc;
 
         const random = Math.random() * (maxPerc - minPerc - minPerc) + minPerc;
@@ -27,12 +28,18 @@ export default function Obstacle(gameArea, { gapHeight, speed, ...settings }) {
       const nodeList = document.querySelectorAll(`#${settings.id}`);
       return Array.from(nodeList).map((element) => {
         const obstacle = new Obstacle(gameArea, { element });
+        const upperTube = new Element(
+          obstacle.element.querySelector("#upperTube")
+        );
         if (obstacle.left > -obstacle.width) {
           obstacle.move.left(speed);
         } else {
           obstacle.remove();
         }
-        return { left: obstacle.left, top: obstacle.top };
+        return {
+          obstacle: { left: obstacle.left, top: obstacle.top },
+          gap: { left: obstacle.left, top: upperTube.height },
+        };
       });
     },
   };

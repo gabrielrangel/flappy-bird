@@ -1,21 +1,22 @@
-export default function Loop(game) {
+export default function Loop({ controllers, obstacles, area, bird, score }) {
   return setInterval(() => {
-    if (game.controllers.isPlaying) {
-      const obstaclesPositions = game.obstacles.mover();
-      let lastObstacle = Object()
+    if (controllers.isPlaying) {
+      const obstaclesPositions = obstacles.mover();
+      let lastObstacle = Object();
       try {
         lastObstacle = obstaclesPositions.reduce((acc, cur) => {
-          return acc.left > cur.left ? acc : cur;
+          score.movementChecker(cur)
+          return acc.obstacle.left > cur.obstacle.left ? acc : cur;
         });
       } catch (e) {
-        lastObstacle = { left: 0, top: 0 };
+        lastObstacle = { obstacle: { left: 0, top: 0 } };
       } finally {
-        if (lastObstacle.left < game.area.width/2) {
-          game.obstacles.generator();
+        if (lastObstacle.obstacle.left < area.width / 2) {
+          obstacles.generator();
         }
       }
 
-      const birdPosition = game.bird.mover(game.controllers.keyIsPressed);
+      bird.mover(controllers.keyIsPressed);
     }
   }, 40);
 }
