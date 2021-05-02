@@ -13,7 +13,7 @@
 
   "gameContainer": {
     "class": "flappy-game-container",
-    "style": { "height": 720, "width": 480 }
+    "style": { "height": 480, "width": 720 }
   },
 
   "gameScore": {

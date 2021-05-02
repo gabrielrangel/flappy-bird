@@ -1,7 +1,7 @@
 import Element from "./lib/element.js";
 
 export default function Score(
-  { area, bird, obstacles, controllers },
+  { container, bird, obstacles, controllers },
   settings) {
   const score = new Element(settings);
 
@@ -21,7 +21,7 @@ export default function Score(
     });
   };
 
-  area.append(score);
+  container.append(score);
 
   return score;
 }

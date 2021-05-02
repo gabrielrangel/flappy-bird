@@ -1,6 +1,6 @@
 import Element from "./lib/element.js";
 
-export default function Controllers(gameArea, settings) {
+export default function Controllers(gameContainer, settings) {
   const controllers = new Element(settings);
 
   controllers.isPlaying = false;
@@ -29,7 +29,7 @@ export default function Controllers(gameArea, settings) {
     controllers.keyIsPressed = false;
   });
 
-  gameArea.append(controllers)
+  gameContainer.append(controllers)
 
   return controllers;
 }

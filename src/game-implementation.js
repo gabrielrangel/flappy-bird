@@ -18,7 +18,7 @@ export default function GameImpl(settings, containerId) {
   game.area = new Element(settings.gameArea);
   game.container.append(game.area);
 
-  game.controllers = Controllers(game.area, settings.gameControllers);
+  game.controllers = Controllers(game.container, settings.gameControllers);
 
   game.obstacles = Obstacle(game.area, settings.gameObstacle);
 
