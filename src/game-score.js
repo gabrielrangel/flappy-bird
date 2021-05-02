@@ -1,12 +1,27 @@
 import Element from "./lib/element.js";
 
-export default function Score({ area, bird }, settings) {
+export default function Score(
+  { area, bird, obstacles, controllers },
+  settings) {
   const score = new Element(settings);
-  area.append(score);
-  return {
-    movementChecker: (obstaclePosition) => {
-        console.log(obstaclePosition)
-    },
-    ...score,
+
+  score.movementChecker = () => {
+    obstacles.list().forEach((obstacle) => {
+      if (
+        obstacle.left <= bird.left + bird.width &&
+        obstacle.left + obstacle.width >= bird.left
+      ) {
+        if (
+          bird.top < obstacle.gap.top ||
+          bird.top + bird.height > obstacle.gap.top + obstacle.gap.height
+        ) {
+          controllers.isOver = true;
+        }
+      }
+    });
   };
+
+  area.append(score);
+
+  return score;
 }

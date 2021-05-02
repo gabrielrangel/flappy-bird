@@ -6,5 +6,7 @@ export default (function flappyBird(containerId = "flappy-bird") {
     .then((settings) => {
       GameImpl(settings, containerId);
     })
-    .catch((err) => console.error(err));
-})()
+    .catch((err) => {
+      throw err;
+    });
+})();

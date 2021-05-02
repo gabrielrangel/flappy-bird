@@ -27,7 +27,7 @@
     "children": [
       {
         "tag": "img",
-        "id": "flappy-play-pause", 
+        "id": "flappy-play-pause",
         "src": "../assets/img/play_circle_filled_black_48dp.svg"
       }
     ]
@@ -45,12 +45,12 @@
     "tag": "img",
     "id": "flappy-game-bird",
     "src": "../assets/img/bird.png",
-    "style": { "height": 50 }
+    "style": { "height": 50, "width": 69.41 }
   },
-  
+
   "gameObstacle": {
-    "gapHeight": 0.2,
-    "speed": 0.01,
+    "gapHeight": 0.18,
+    "speed": 0.02,
     "tag": "div",
     "id": "flappy-game-obstacle",
     "class": "flappy-game-obstacle",

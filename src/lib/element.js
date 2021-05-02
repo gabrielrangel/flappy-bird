@@ -24,9 +24,6 @@ export default class Element extends StyleShortcuts {
         this.element.append(this[childSettings.id].element);
       });
     }
-
-    // this.append = (child) => {
-    // };
   }
   
   append = (child) => {

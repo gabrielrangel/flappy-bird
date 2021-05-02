@@ -2,8 +2,8 @@ import Element from "./lib/element.js";
 import Loop from "./game-loop.js";
 import Bird from "./game-bird.js";
 import Obstacle from "./game-obstacle.js";
-import Controllers from "./game.controllers.js"
-import Score from "./game-score.js"
+import Controllers from "./game.controllers.js";
+import Score from "./game-score.js";
 
 export default function GameImpl(settings, containerId) {
   new Element(settings.stylesheet);
@@ -13,18 +13,18 @@ export default function GameImpl(settings, containerId) {
     query: `#${containerId}`,
     ...settings.gameContainer,
   });
-  
+
   settings.gameArea.style = settings.gameContainer.style;
   game.area = new Element(settings.gameArea);
-  game.container.append(game.area)
-  
+  game.container.append(game.area);
+
   game.controllers = Controllers(game.area, settings.gameControllers);
-  
+
   game.obstacles = Obstacle(game.area, settings.gameObstacle);
-  
-  game.bird = Bird(game.area, settings.gameBird);
-  
-  game.score = Score(game, settings.gameScore)
+
+  game.bird = Bird(game, settings.gameBird);
+
+  game.score = Score(game, settings.gameScore);
 
   game.loop = Loop(game);
 }
