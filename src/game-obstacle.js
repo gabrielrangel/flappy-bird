@@ -24,6 +24,15 @@ export default function Obstacle(gameArea, { gapHeight, speed, ...settings }) {
         height: gapHeight * gameArea.height,
       };
     }
+
+    get overcome() {
+      return this.element.hasAttribute("obstacle-overcome")
+        ? this.element.getAttribute("obstacle-overcome") === "true"
+        : undefined;
+    }
+    set overcome(value) {
+      this.element.setAttribute("obstacle-overcome", value == true);
+    }
   }
 
   const obstacle = new Object();
