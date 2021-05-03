@@ -61,6 +61,7 @@
 
   "gameObstacle": {
     "gapHeight": 0.3,
+    "minHeight": 0.1,
     "speed": 0.02,
     "tag": "div",
     "id": "flappy-game-obstacle",

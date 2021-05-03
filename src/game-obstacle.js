@@ -1,17 +1,19 @@
 import AnimatedElement from "./lib/animated-element.js";
 
-export default function Obstacle(gameArea, { gapHeight, speed, ...settings }) {
+export default function Obstacle(
+  gameArea,
+  { gapHeight, minHeight, speed, ...settings }
+) {
   class Obstacle extends AnimatedElement {
     constructor(gameArea, settings) {
       if (!settings.element) {
-        const minPerc = (gapHeight * gameArea.height) / gameArea.height;
-        const maxPerc = 1 - minPerc;
+        const maxHeight = 1 - minHeight - gapHeight;
+        const randomHeight =
+          Math.random() * (maxHeight - minHeight) + minHeight;
 
-        const random = Math.random() * (maxPerc - minPerc - minPerc) + minPerc;
-
-        settings.children[0].style.height = random * gameArea.height;
+        settings.children[0].style.height = randomHeight * gameArea.height;
         settings.children[1].style.height =
-          (maxPerc - random) * gameArea.height;
+          (1 - gapHeight - randomHeight) * gameArea.height;
       }
       settings.initialLeft = gameArea.width;
       super(gameArea, settings);
@@ -53,7 +55,7 @@ export default function Obstacle(gameArea, { gapHeight, speed, ...settings }) {
       const lastObstacle = obstacle.list().reduce((acc, cur) => {
         return acc.left > cur.left ? acc : cur;
       });
-      if (lastObstacle.left < gameArea.width / 2) {
+      if (lastObstacle.left + lastObstacle.width < gameArea.width / 2) {
         gameArea.append(new Obstacle(gameArea, settings));
       }
     } catch (e) {
