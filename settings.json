@@ -7,6 +7,17 @@
         "tag": "link",
         "rel": "stylesheet",
         "href": "./assets/css/flappy-bird.css"
+      },
+      {
+        "tag": "link",
+        "rel": "preconnect",
+        "href": "https://fonts.gstatic.com"
+      },
+
+      {
+        "tag": "link",
+        "rel": "stylesheet",
+        "href": "https://fonts.googleapis.com/css2?family=VT323&display=swap"
       }
     ]
   },
@@ -49,7 +60,7 @@
   },
 
   "gameObstacle": {
-    "gapHeight": 0.18,
+    "gapHeight": 0.3,
     "speed": 0.02,
     "tag": "div",
     "id": "flappy-game-obstacle",
