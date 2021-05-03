@@ -1,5 +1,5 @@
 div.flappy-game-container {
-  background-color: rgb(20, 191, 209);
+  background-color: rgb(84, 199, 209);
   border: 5px solid black;
 
   display: grid;
@@ -83,7 +83,7 @@ div.flappy-game-obstacle > div:nth-child(2) {
 }
 
 div.flappy-game-obstacle div div {
-  border: 2px solid black;
+  border: 2px solid rgb(89, 54, 71);
   background: rgb(155, 227, 89);
   background: -moz-linear-gradient(
     90deg,
