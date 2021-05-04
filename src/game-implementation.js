@@ -18,13 +18,34 @@ export default function GameImpl(settings, containerId) {
   game.area = new Element(settings.gameArea);
   game.container.append(game.area);
 
-  game.controllers = Controllers(game.container, settings.gameControllers);
-
   game.obstacles = Obstacle(game.area, settings.gameObstacle);
 
-  game.bird = Bird(game, settings.gameBird);
+  game.newGame = function () {
+    game.bird = Bird(game, settings.gameBird);
 
-  game.score = Score(game, settings.gameScore);
+    game.score = Score(game, settings.gameScore);
 
-  game.loop = Loop(game);
+    game.loop = Loop(game);
+  };
+
+  game.resetGame = () => {
+    clearInterval(game.loop);
+    delete game.loop;
+
+    game.score.remove();
+    delete game.score;
+
+    game.bird.remove();
+    delete game.bird;
+
+    game.obstacles.list().forEach((obstacle) => {
+      obstacle.remove();
+    });
+
+    game.newGame();
+  };
+
+  game.controllers = Controllers(game, settings.gameControllers);
+
+  game.newGame();
 }

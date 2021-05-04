@@ -1,23 +1,30 @@
 import Element from "./lib/element.js";
 
-export default function Controllers(gameContainer, settings) {
+export default function Controllers({ resetGame, container }, settings) {
   const controllers = new Element(settings);
 
   controllers.isPlaying = false;
   controllers.isOver = false;
   controllers.keyIsPressed = false;
-
+  
   controllers.playPauseToggle = function () {
     if (!controllers.isOver) {
       controllers.isPlaying = !controllers.isPlaying;
       controllers["flappy-play-pause"].element.src = controllers.isPlaying
-        ? "../assets/img/pause_circle_filled_white_48dp.svg"
-        : "../assets/img/play_circle_filled_white_48dp.svg";
+      ? "../assets/img/pause_circle_filled_white_48dp.svg"
+      : "../assets/img/play_circle_filled_white_48dp.svg";
     }
   };
-
+  
   controllers["flappy-play-pause"].element.onclick =
-    controllers.playPauseToggle;
+  controllers.playPauseToggle;
+  
+  controllers["flappy-restart"].element.onclick = () => {
+    controllers.isPlaying = true;
+    controllers.isOver = false;
+    controllers.keyIsPressed = false;
+    resetGame();
+  };
 
   window.addEventListener("blur", () => {
     if (controllers.isPlaying) {
@@ -50,7 +57,7 @@ export default function Controllers(gameContainer, settings) {
     }
   });
 
-  gameContainer.append(controllers);
+  container.append(controllers);
 
   return controllers;
 }

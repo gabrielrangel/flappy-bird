@@ -38,6 +38,11 @@
     "children": [
       {
         "tag": "img",
+        "id": "flappy-restart",
+        "src": "../assets/img/restart_alt_white_48dp.svg"
+      },
+      {
+        "tag": "img",
         "id": "flappy-play-pause",
         "src": "../assets/img/play_circle_filled_white_48dp.svg"
       }
