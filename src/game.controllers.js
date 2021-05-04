@@ -6,25 +6,35 @@ export default function Controllers({ resetGame, container }, settings) {
   controllers.isPlaying = false;
   controllers.isOver = false;
   controllers.keyIsPressed = false;
-  
+
   controllers.playPauseToggle = function () {
     if (!controllers.isOver) {
       controllers.isPlaying = !controllers.isPlaying;
       controllers["flappy-play-pause"].element.src = controllers.isPlaying
-      ? "../assets/img/pause_circle_filled_white_48dp.svg"
-      : "../assets/img/play_circle_filled_white_48dp.svg";
+        ? "../assets/img/pause_circle_filled_white_48dp.svg"
+        : "../assets/img/play_circle_filled_white_48dp.svg";
     }
   };
-  
-  controllers["flappy-play-pause"].element.onclick =
-  controllers.playPauseToggle;
-  
-  controllers["flappy-restart"].element.onclick = () => {
+
+  controllers.restart = () => {
     controllers.isPlaying = true;
     controllers.isOver = false;
     controllers.keyIsPressed = false;
     resetGame();
   };
+
+  controllers.functionKeys = {
+    " ": () => {
+      controllers.keyIsPressed = true;
+    },
+    p: controllers.playPauseToggle,
+    r: controllers.restart,
+  };
+
+  controllers["flappy-play-pause"].element.onclick =
+    controllers.playPauseToggle;
+
+  controllers["flappy-restart"].element.onclick = () => controllers.restart;
 
   window.addEventListener("blur", () => {
     if (controllers.isPlaying) {
@@ -33,27 +43,14 @@ export default function Controllers({ resetGame, container }, settings) {
   });
 
   window.addEventListener("keydown", ({ key }) => {
-    const keyFunctions = {
-      " ": () => {
-        controllers.keyIsPressed = true;
-      },
-      p: controllers.playPauseToggle,
-    };
-
-    if (keyFunctions[key.toLowerCase()]) {
-      keyFunctions[key.toLowerCase()]();
+    if (controllers.functionKeys[key.toLowerCase()]) {
+      controllers.functionKeys[key.toLowerCase()]();
     }
   });
 
   window.addEventListener("keyup", ({ key }) => {
-    const keyFunctions = {
-      " ": () => {
-        controllers.keyIsPressed = false;
-      },
-    };
-
-    if (keyFunctions[key.toLowerCase()]) {
-      keyFunctions[key.toLowerCase()]();
+    if (key === " ") {
+      controllers.keyIsPressed = false;
     }
   });
 
