@@ -32,6 +32,7 @@ export default function Obstacle(
         ? this.element.getAttribute("obstacle-overcome") === "true"
         : undefined;
     }
+
     set overcome(value) {
       this.element.setAttribute("obstacle-overcome", value == true);
     }
