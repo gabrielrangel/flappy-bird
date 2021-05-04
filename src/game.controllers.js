@@ -7,29 +7,50 @@ export default function Controllers(gameContainer, settings) {
   controllers.isOver = false;
   controllers.keyIsPressed = false;
 
-  controllers["flappy-play-pause"].element.onclick = () => {
-    controllers.isPlaying = !controllers.isPlaying;
+  controllers.playPauseToggle = function () {
+    if (!controllers.isOver) {
+      controllers.isPlaying = !controllers.isPlaying;
+      controllers["flappy-play-pause"].element.src = controllers.isPlaying
+        ? "../assets/img/pause_circle_filled_white_48dp.svg"
+        : "../assets/img/play_circle_filled_white_48dp.svg";
+    }
   };
 
-  window.addEventListener("blur", () => {
-    controllers.isPlaying = false;
-  });
+  controllers["flappy-play-pause"].element.onclick =
+    controllers.playPauseToggle;
 
-  window.addEventListener("focus", () => {
-    if (!controllers.isOver) {
-      controllers.isPlaying = true;
+  window.addEventListener("blur", () => {
+    if (controllers.isPlaying) {
+      controllers.playPauseToggle();
     }
   });
 
-  window.addEventListener("keydown", () => {
-    controllers.keyIsPressed = true;
+  window.addEventListener("keydown", ({ key }) => {
+    const keyFunctions = {
+      " ": () => {
+        controllers.keyIsPressed = true;
+      },
+      p: controllers.playPauseToggle,
+    };
+
+    if (keyFunctions[key.toLowerCase()]) {
+      keyFunctions[key.toLowerCase()]();
+    }
   });
 
-  window.addEventListener("keyup", () => {
-    controllers.keyIsPressed = false;
+  window.addEventListener("keyup", ({ key }) => {
+    const keyFunctions = {
+      " ": () => {
+        controllers.keyIsPressed = false;
+      },
+    };
+
+    if (keyFunctions[key.toLowerCase()]) {
+      keyFunctions[key.toLowerCase()]();
+    }
   });
 
-  gameContainer.append(controllers)
+  gameContainer.append(controllers);
 
   return controllers;
 }

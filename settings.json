@@ -39,7 +39,7 @@
       {
         "tag": "img",
         "id": "flappy-play-pause",
-        "src": "../assets/img/play_circle_filled_black_48dp.svg"
+        "src": "../assets/img/play_circle_filled_white_48dp.svg"
       }
     ]
   },
